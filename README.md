@@ -1,6 +1,6 @@
 # VOSS - Voice of Smart System
 
-![voss](./media/thumbnail.png)
+![voss](./media/thumbnail.jpg)
 
 ## 프로젝트 소개
 
