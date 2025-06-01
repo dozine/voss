@@ -1,6 +1,6 @@
 # VOSS - Voice of Smart System
 
-## ![voss](./media/thumbnail.png)
+![voss](./media/thumbnail.png)
 
 ## 프로젝트 소개
 
@@ -80,6 +80,7 @@ VOSS(Voice of Smart System)는 AI를 활용해 실시간 감정 분석과 음성
 | 박정재 | AI모델             |
 | 이솔   | 프론트엔드         |
 | 신예빈 | AI모델, 백엔드     |
+| 곽정현 | 백엔드             |
 
 ---
 
