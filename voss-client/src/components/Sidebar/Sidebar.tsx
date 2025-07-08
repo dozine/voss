@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from './Sidebar.module.scss';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -11,6 +11,7 @@ import {
 } from '../../utils/auth';
 import { logoutUser } from 'store/auth/authSlice';
 import Icon from '../Icon';
+import { on } from 'events';
 
 interface MenuItem {
   id: string;
@@ -73,22 +74,47 @@ const adminMenuItems: MenuItem[] = [
   },
 ];
 
-const Sidebar: React.FC = () => {
+interface SidebarProps {
+  isMobile?: boolean;
+  onClose?: () => void;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ isMobile = false, onClose }) => {
   const location = useLocation();
   const user = useSelector((state: RootState) => state.auth.user);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
 
+  const sidebarRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!isMobile) return;
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        sidebarRef.current &&
+        !sidebarRef.current.contains(event.target as Node)
+      ) {
+        onClose?.();
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isMobile, onClose]);
+
   const handleAdminClick = () => {
     navigate(ADMIN_BASE_URL);
+    onClose?.();
   };
 
   const handleClickEvent = async (
     event: React.MouseEvent<HTMLButtonElement | HTMLSpanElement>,
   ) => {
     event.preventDefault();
-
+    onClose?.();
     if (event.currentTarget.id === 'logout') {
       try {
         const refreshTokenValue = getRefreshToken();
@@ -136,6 +162,7 @@ const Sidebar: React.FC = () => {
               className={`${styles['menu-items']} ${location.pathname === item.id ? styles.active : ''}`}
               onMouseEnter={() => setHoveredItem(item.id)}
               onMouseLeave={() => setHoveredItem(null)}
+              onClick={onClose}
             >
               <Icon
                 name={location.pathname === item.id ? item.icon : item.icon}
@@ -154,6 +181,7 @@ const Sidebar: React.FC = () => {
               className={`${styles['menu-items']} ${location.pathname === item.id ? styles.active : ''}`}
               onMouseEnter={() => setHoveredItem(item.id)}
               onMouseLeave={() => setHoveredItem(null)}
+              onClick={onClose}
             >
               <Icon
                 name={
