@@ -11,7 +11,7 @@ class VocRecord(models.Model):
     date=models.DateTimeField(auto_now_add=True, editable=False)
     summary=models.TextField(null=True)
     opinion=models.TextField(blank=True, null=True)
-    keyword=ArrayField(models.TextField(), blank=True, default=[])
+    keyword=ArrayField(models.CharField(max_length=200), blank=True, default=list)
     context=models.TextField(null=True)
 
 # class Record(models.Model):
