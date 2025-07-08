@@ -1,0 +1,33 @@
+// src/components/Navbar/Navbar.module.scss
+.navbarWrapper {
+  width: 100%;
+  margin-top: 1.25em; // GNB의 기존 margin-top 유지
+  position: relative; // 알림창 position:absolute 기준점
+  z-index: 100; // 다른 콘텐츠 위에 오도록 z-index 설정
+  background-color: white; // 필요에 따라 배경색 지정
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // 살짝 그림자 추가
+}
+
+.navbarInner {
+  width: calc(100% - 4rem); // GNB의 기존 width와 padding 고려
+  max-width: 1600px; // 최대 너비 설정 (옵션)
+  margin: 0 auto; // 중앙 정렬
+  padding: 0 2rem; // GNB의 기존 padding 유지
+  height: 6rem; // GNB의 기존 height 유지 (WorkStatus에 맞춰 조정 가능)
+
+  display: flex;
+  justify-content: space-between; // WorkStatus와 GNB를 양 끝으로 배치
+  align-items: center; // 세로 중앙 정렬
+}
+
+.navbarLeft {
+  // WorkStatus 컨테이너 스타일 (필요시 조정)
+  display: flex;
+  align-items: center;
+}
+
+.navbarRight {
+  // GNB 컨테이너 스타일 (필요시 조정)
+  display: flex;
+  align-items: center;
+}

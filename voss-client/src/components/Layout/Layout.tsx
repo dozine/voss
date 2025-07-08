@@ -9,6 +9,7 @@ import { RootState } from '../../store';
 import Loading from '../../pages/Loading';
 import { WorkStatus } from './WorkStatus/WorkStatus';
 import MainFooter from 'components/Footer/MainFooter';
+import Navbar from 'components/Navbar';
 
 const MOBILE_BREAKPOINT = 768;
 const TABLET_BREAKPOINT = 1024;
@@ -62,9 +63,8 @@ const Layout: React.FC = () => {
       )}
 
       <div className={styles['main']}>
-        <GNB userProfileUrl={''} />
+        <Navbar userProfileUrl={''} />
         <div className={styles['content']}>
-          <WorkStatus />
           <Outlet />
         </div>
       </div>
