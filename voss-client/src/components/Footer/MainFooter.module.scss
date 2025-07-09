@@ -4,8 +4,15 @@
   justify-content: center;
   align-items: center;
   height: 8rem;
+
   margin-left: calc(297px + 4rem);
-  margin-right: 2rem;
+  margin-right: 4rem;
+
+  @media (max-width: 1024px) {
+    width: 90%;
+    margin-left: 2rem;
+    margin-right: 0rem;
+  }
 }
 .footer {
   border-radius: 25px 25px 0 0;
