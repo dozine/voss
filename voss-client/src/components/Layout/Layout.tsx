@@ -70,10 +70,6 @@ const Layout: React.FC = () => {
       </div>
       {!isHomePage && <Footer />}
       {isHomePage && <MainFooter />}
-
-      {isSidebarOpen && (isMobile || isTablet) && (
-        <div className={styles['sidebar-mobile']} onClick={toggleSidebar}></div>
-      )}
     </div>
   );
 };
